@@ -1,0 +1,39 @@
+<div class="d-flex justify-content-between color-white font-bold">
+  <div>
+    <p>Nbr de games: <%= current_user.games.size %></p>
+    <p>Nbr de parties: <%= @party.num_of_parties %>/5</p>
+  </div>
+
+  <div class="text-right">
+    <p>Meilleur score: <%= current_user.best_score %></p>
+    <p>Score actuel: <%= @game_score %></p>
+  </div>
+</div>
+
+<%= render 'shared/grid', letters: @party.ten_letters_list %>
+
+<h2><%= @party.word.upcase %></h2>
+
+<div class="card p-3 mt-3 bdr-16">
+  <h3 class="font-bold color-blue">Les 10 meilleurs réponses</h3>
+  <div class="d-flex justify-content-around">
+    <div>
+      <% if @top_ten %>
+        <% @top_ten[0..4].each do |word| %>
+          <div class="font-bold p-1"><%= word %></div>
+        <% end %>
+      <% end %>
+    </div>
+    <div>
+      <% if @top_ten && @top_ten.size > 5 %>
+        <% @top_ten[5..9].each do |word| %>
+          <div class="font-bold p-1"><%= word %></div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="pt-3">
+  <%= link_to "Rejouer", root_path, class: "btn btn-primary" %>
+</div>

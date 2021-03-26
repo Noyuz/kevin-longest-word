@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center flex-wrap pb-5">
+  <div class="d-flex justify-content-center">
+    <% letters[0..4].each_char do |letter| %>
+      <div class="letter-card text-shadow"><%= letter %></div>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-center">
+    <% letters[5..9].each_char do |letter| %>
+      <div class="letter-card text-shadow"><%= letter %></div>
+    <% end %>
+  </div>
+</div>
