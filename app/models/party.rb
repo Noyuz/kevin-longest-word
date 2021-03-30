@@ -46,7 +46,7 @@ class Party < ApplicationRecord
   end
 
   def game!(user)
-    self.game = (game_ongoing(user) && game_ongoing(user).parties.size < 5 ? game_in_progress(user) : user.games.new)
+    self.game = (game_ongoing(user) && game_ongoing(user).parties.size < 5 ? game_ongoing(user) : user.games.new)
   end
 
   def create_solutions

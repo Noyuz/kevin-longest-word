@@ -1,6 +1,11 @@
 // Specific CSS for your home-page
 body {
   background: linear-gradient(to right, #f5af19, #f12711);
+  list-style: none;
+}
+
+ul {
+  list-style: none;
 }
 
 h2 {
@@ -23,6 +28,7 @@ h2 {
   margin: 8px 5px;
   background-color: white;
   min-width: 60px;
+  cursor: grab;
 }
 
 .btn {
