@@ -10,6 +10,10 @@ class User < ApplicationRecord
     games.size
   end
 
+  def game_started
+    games.last
+  end
+
   def best_score
     games.map(&:score).max
   end

@@ -45,12 +45,8 @@ class Party < ApplicationRecord
     errors.errors.first.options[:message]
   end
 
-  def last_game
-    Game.last
-  end
-
   def game!(user)
-    self.game = last_game.parties.size < 5 ? last_game : user.games.new
+    self.game = (user.game_started && user.game_started.number_of_parties < 5 ? last_game : user.games.new)
   end
 
   def create_solutions
