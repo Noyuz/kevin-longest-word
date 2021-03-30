@@ -6,12 +6,8 @@ class User < ApplicationRecord
 
   has_many :games
 
-  def game_in_progress
-    games.last
-  end
-
-  def number_of_parties
-    game_in_progress.parties.count
+  def number_of_games
+    games.size
   end
 
   def best_score

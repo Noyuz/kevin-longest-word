@@ -20,9 +20,9 @@ ActiveStorage.start()
 
 // External imports
 import "bootstrap";
-
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
+import { loadingScreen } from './loading_screen';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:

@@ -7,21 +7,8 @@ class Party < ApplicationRecord
   validates :word, :ten_letters_list, presence: true
   validates :available, inclusion: { in: [true], message: "Ce mot n'est pas dans le dictionnaire!" }
 
-  def available!
-    self.available = Dictionary.exist?(word) && included?
-  end
-
-  def included?
-    word.chars.all? { |letter| word.count(letter) <= ten_letters_list.chars.count(letter) }
-  end
-
-  def upcase_word!
-    word.upcase!
-  end
-
-  def humanized_error
-    errors.errors.first.options[:message]
-  end
+  before_save :score!
+  after_save :create_solutions
 
   def create_grid
     list = []
@@ -34,7 +21,46 @@ class Party < ApplicationRecord
     list.join
   end
 
+  def available!
+    self.available = Dictionary.exist?(word) && included?
+  end
+
+  def included?
+    word.chars.all? { |letter| word.count(letter) <= ten_letters_list.chars.count(letter) }
+  end
+
+  def upcase_word!
+    word.upcase!
+  end
+
   def num_of_parties
     game.parties.size
+  end
+
+  def score!
+    self.score = word.size
+  end
+
+  def humanized_error
+    errors.errors.first.options[:message]
+  end
+
+  def last_game
+    Game.last
+  end
+
+  def game!(user)
+    self.game = last_game.parties.size < 5 ? last_game : user.games.new
+  end
+
+  def create_solutions
+    words = Dictionary.top_ten(ten_letters_list)
+    words.each do |word|
+      Solution.create(word: word, party: self)
+    end
+  end
+
+  def solution_words
+    solutions.map(&:word)
   end
 end

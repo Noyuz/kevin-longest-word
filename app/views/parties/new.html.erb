@@ -1,7 +1,8 @@
+
 <%= render 'shared/grid', letters: @grid %>
 
-<%= simple_form_for(@party) do |f| %>
+<%= simple_form_for(@party, remote: true) do |f| %>
   <%= f.input :word, label: false %>
   <%= f.input :ten_letters_list, as: :hidden, input_html: { value: @grid } %>
-  <%= f.submit "Jouer", class: "btn btn-primary" %>
+  <%= f.submit "Jouer", class: "btn btn-primary", id: "play-btn" %>
 <% end %>

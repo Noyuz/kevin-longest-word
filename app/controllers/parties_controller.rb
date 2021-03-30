@@ -6,21 +6,23 @@ class PartiesController < ApplicationController
 
   def create
     @party = Party.new(set_params)
-    @party.game = current_user.number_of_parties < 5 ? current_user.game_in_progress : Game.new(user: current_user) #current_user.games.new
+    @party.game!(current_user)
     if @party.save
-      @party.update(score: @party.word.size)
       redirect_to party_path(@party)
     else
-      flash[:notice] = @party.errors.full_messages.to_sentence
+      flash[:notice] = @party.humanized_error
       @grid = params[:party][:ten_letters_list]
-      render 'new'
+      render :new
     end
   end
 
   def show
     @party = Party.find(params[:id])
+    @number_of_games = current_user.number_of_games
+    @best_score = current_user.best_score
     @game_score = @party.game.score
-    @top_ten = Dictionary.top_ten(@party.ten_letters_list)
+    @number_of_parties = @party.num_of_parties
+    @ten_solutions = @party.solution_words
   end
 
   private
@@ -29,6 +31,3 @@ class PartiesController < ApplicationController
     params.require(:party).permit(:word, :ten_letters_list)
   end
 end
-
-
-#refacto calcul score d'une game
