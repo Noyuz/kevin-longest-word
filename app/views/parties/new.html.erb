@@ -1,8 +1,27 @@
 
 <%= render 'shared/grid', letters: @grid %>
+<p class="order-letters">Mets les lettres dans l'ordre que tu veux !</p>
 
 <%= simple_form_for(@party, remote: true) do |f| %>
   <%= f.input :word, label: false %>
   <%= f.input :ten_letters_list, as: :hidden, input_html: { value: @grid } %>
-  <%= f.submit "Jouer", class: "btn btn-primary", id: "play-btn" %>
+  <div class="d-flex justify-content-center">
+    <%= f.submit "Jouer", class: "btn btn-primary", id: "play-btn" %>
 <% end %>
+  <!-- Button trigger modal -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#hint-modal">Aide</button>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="hint-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p id="hint"><strong><%= @hint_word %>...</strong></p>
+        <p>ce mot est composé de <%= @hint_size %> lettres !</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,6 +2,8 @@ class PartiesController < ApplicationController
   def new
     @party = Party.new
     @grid = @party.create_grid
+    @hint_word = @party.hint_word(@grid)
+    @hint_size = @party.hint_size(@grid)
   end
 
   def create
@@ -12,6 +14,8 @@ class PartiesController < ApplicationController
     else
       flash[:notice] = @party.humanized_error
       @grid = params[:party][:ten_letters_list]
+      @hint_word = @party.hint_word(@grid)
+      @hint_size = @party.hint_size(@grid)
       render :new
     end
   end

@@ -10,11 +10,17 @@ class Dictionary
     words.include?(answer)
   end
 
-  def self.top_ten(grid)
-    words = parsing_txt
-    selected = words.select do |word|
+  def self.solutions(grid)
+    parsing_txt.select do |word|
       word.chars.all? { |char| grid.count(char) >= word.count(char) && grid.count(char).positive? }
     end
-    selected.sort_by(&:length).reverse!.first(10)
+  end
+
+  def self.hint(grid)
+    solutions(grid).max_by(&:length)
+  end
+
+  def self.top_ten(grid)
+    solutions(grid).sort_by(&:length).reverse!.first(10)
   end
 end

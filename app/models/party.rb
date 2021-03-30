@@ -45,6 +45,18 @@ class Party < ApplicationRecord
     user.game_started
   end
 
+  def hint(grid)
+    Dictionary.hint(grid)
+  end
+
+  def hint_word(grid)
+    hint(grid)[0..1]
+  end
+
+  def hint_size(grid)
+    hint(grid).size
+  end
+
   def game!(user)
     self.game = (game_ongoing(user) && game_ongoing(user).parties.size < 5 ? game_ongoing(user) : user.games.new)
   end

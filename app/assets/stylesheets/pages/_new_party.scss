@@ -1,11 +1,6 @@
 // Specific CSS for your home-page
 body {
   background: linear-gradient(to right, #f5af19, #f12711);
-  list-style: none;
-}
-
-ul {
-  list-style: none;
 }
 
 h2 {
@@ -78,4 +73,20 @@ h2 {
 
 .drag {
   opacity: 1 !important;
+}
+
+#hint {
+  font-size: 40px;
+}
+
+.modal-content {
+  border-radius: 16px;
+}
+
+.order-letters {
+  margin-bottom: 3em;
+}
+
+.word-answer {
+  margin-top: 2em;
 }
