@@ -41,12 +41,16 @@ class Party < ApplicationRecord
     self.score = word.size
   end
 
+  def game_in_progress(user)
+    user.game_started
+  end
+
   def humanized_error
     errors.errors.first.options[:message]
   end
 
   def game!(user)
-    self.game = (user.game_started && user.game_started.number_of_parties < 5 ? last_game : user.games.new)
+    self.game = (game_in_progress(user) && game_in_progress(user).parties.size < 5 ? game_in_progress(user) : user.games.new)
   end
 
   def create_solutions
