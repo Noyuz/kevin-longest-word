@@ -25,9 +25,9 @@ import "bootstrap";
 import { loadingScreen } from './loading_screen';
 import { initSortable } from './init_sortable';
 
-initSortable();
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
+  initSortable();
   // initSelect2();
 });
