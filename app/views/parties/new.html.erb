@@ -3,21 +3,37 @@
 <p class="order-letters">Mets les lettres dans l'ordre que tu veux !</p>
 
 <%= simple_form_for(@party, remote: true) do |f| %>
-  <%= f.input :word, label: false %>
+  <%= f.input :word, label: false, class: "word-input" %>
   <%= f.input :ten_letters_list, as: :hidden, input_html: { value: @grid } %>
-  <div class="d-flex justify-content-center">
+  <div class="d-flex justify-content-center buttons">
     <%= f.submit "Jouer", class: "btn btn-primary", id: "play-btn" %>
 <% end %>
-  <!-- Button trigger modal -->
-    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#hint-modal">Aide</button>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-info <%= "toggle-color" if @hint.nil? %>" data-toggle="modal" data-target="#hint-modal">Aide</button>
+
+    <% if @hint %>
+      <%= simple_form_for(@party, remote: true) do |f| %>
+        <%= f.input :word, as: :hidden, input_html: { value: @hint } %>
+        <%= f.input :ten_letters_list, as: :hidden, input_html: { value: @grid } %>
+        <%= f.input :score, as: :hidden, input_html: { value: 0 } %>
+        <%= f.submit "Solution", class: "btn btn-danger", id: "play-btn" %>
+      <% end %>
+    <% end %>
   </div>
+  
+
 <!-- Modal -->
 <div class="modal fade" id="hint-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <p id="hint"><strong><%= @hint_word %>...</strong></p>
-        <p>ce mot est composé de <%= @hint_size %> lettres !</p>
+        <% if @hint_word %>
+          <p id="hint"><strong><%= @hint_word %>...</strong></p>
+          <p>ce mot est composé de <%= @hint_size %> lettres !</p>
+        <% else %>
+          <p id="hint">Pas de bol, il n'y a aucune solution possible ! <br> (Dictionnaire de merde...)</p>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>

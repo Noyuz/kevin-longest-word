@@ -20,6 +20,14 @@ class Dictionary
     solutions(grid).max_by(&:length)
   end
 
+  def self.hint_word(grid)
+    hint(grid)[0..1] unless hint(grid).nil?
+  end
+
+  def self.hint_size(grid)
+    hint(grid)&.size
+  end
+
   def self.top_ten(grid)
     solutions(grid).sort_by(&:length).reverse!.first(10)
   end

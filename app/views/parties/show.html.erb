@@ -12,7 +12,13 @@
 
 <%= render 'shared/grid', letters: @party.ten_letters_list %>
 
-<h2 class="word-answer"><%= @party.word %></h2>
+<% if @party.score.zero? %>
+  <h3 class="word-answer">Désolé, tu ne gagnes pas de point pour cette partie !</h3>
+  <h2 class="word-answer">Une solution possible était: <%= @party.word %></h2>
+<% else %>
+  <h2 class="word-answer"><%= @party.word %></h2>
+<% end %>
+
 
 <div class="card p-3 mt-3 bdr-16">
   <h3 class="font-bold color-blue">Les 10 meilleurs réponses</h3>
@@ -34,6 +40,44 @@
   </div>
 </div>
 
-<div class="pt-3">
-  <%= link_to "Rejouer", root_path, class: "btn btn-primary" %>
+  <% if @number_of_parties == 5 %>
+    <div class ="pt-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Rejouer</button>
+    </div>
+  <% else %>
+  <div class="pt-3">
+    <%= link_to "Rejouer", root_path, class: "btn btn-primary" %>
+  </div>
+  <% end %>
+  
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title" id="exampleModalLabel">Partie terminée !</h1>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <h2>Voici un résumé de cette game :</h2>  
+        <% @parties.each do |party| %>
+          <h3><%= party.ten_letters_list %> - <%= party.score %> points</h3>
+          <% if party.score.zero? %>
+            <p>Aucun mot trouvé</p>
+          <% else %>
+            <p>Ta réponse: <%= party.word %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <%= link_to "Rejouer ?", root_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
+

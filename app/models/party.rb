@@ -7,7 +7,7 @@ class Party < ApplicationRecord
   validates :word, :ten_letters_list, presence: true
   validates :available, inclusion: { in: [true], message: "Ce mot n'est pas dans le dictionnaire!" }
 
-  before_save :score!
+  before_create :score!
   after_save :create_solutions
 
   def create_grid
@@ -38,23 +38,11 @@ class Party < ApplicationRecord
   end
 
   def score!
-    self.score = word.size
+    self.score = word.size if score.nil?
   end
 
   def game_ongoing(user)
     user.game_started
-  end
-
-  def hint(grid)
-    Dictionary.hint(grid)
-  end
-
-  def hint_word(grid)
-    hint(grid)[0..1]
-  end
-
-  def hint_size(grid)
-    hint(grid).size
   end
 
   def game!(user)

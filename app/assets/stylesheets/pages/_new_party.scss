@@ -90,3 +90,22 @@ h2 {
 .word-answer {
   margin-top: 2em;
 }
+
+.form-group {
+  margin-bottom: 0;
+}
+
+.buttons {
+  margin-top: 1em;
+}
+
+@-webkit-keyframes clignote {
+  100%{background-color: #E50A06;}
+  100%{border-color:#E50A06;}
+}
+
+.toggle-color {
+  -webkit-animation-name: clignote; //on affecte l'animation clignote à notre bouton
+  -webkit-animation-duration: 0.5s; //on définit la durée de l'animation à 1s
+  -webkit-animation-iteration-count:infinite; //on dit que l'animation se répétera à l'infini.
+}
