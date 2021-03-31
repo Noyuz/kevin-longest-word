@@ -3,7 +3,7 @@
 <p class="order-letters">Mets les lettres dans l'ordre que tu veux !</p>
 
 <%= simple_form_for(@party, remote: true) do |f| %>
-  <%= f.input :word, label: false, class: "word-input" %>
+  <%= f.input :word, label: false, class: "word-input", error: "Entrez un mot dans champ prévu à cet effet" %>
   <%= f.input :ten_letters_list, as: :hidden, input_html: { value: @grid } %>
   <div class="d-flex justify-content-center buttons">
     <%= f.submit "Jouer", class: "btn btn-primary", id: "play-btn" %>
@@ -14,7 +14,7 @@
 
     <% if @hint %>
       <%= simple_form_for(@party, remote: true) do |f| %>
-        <%= f.input :word, as: :hidden, input_html: { value: @hint } %>
+        <%= f.input :word, as: :hidden, input_html: { value: @hint }, error: false %>
         <%= f.input :ten_letters_list, as: :hidden, input_html: { value: @grid } %>
         <%= f.input :score, as: :hidden, input_html: { value: 0 } %>
         <%= f.submit "Solution", class: "btn btn-danger", id: "play-btn" %>
