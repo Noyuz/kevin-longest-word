@@ -1,0 +1,23 @@
+.letter-card {
+  box-shadow: 2px 2px 4px grey;
+  border-radius: 16px;
+  padding: 10px;
+  margin: 8px 5px;
+  background-color: white;
+  min-width: 60px;
+  font-size: 45px;
+  text-shadow: -2px 2px 4px silver, 2px 2px 4px silver;
+  cursor: grab;
+}
+
+.order-letters {
+  margin-bottom: 3em;
+}
+
+.ghost { 
+  opacity: 0; 
+}
+
+.drag {
+  opacity: 1 !important;
+}

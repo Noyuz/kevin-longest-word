@@ -1,111 +1,13 @@
 // Specific CSS for your home-page
-body {
-  background: linear-gradient(to right, #f5af19, #f12711);
-}
-
-h2 {
-  border-radius: 16px;
-  font-weight: bold;
-  color: #3261CF;
-  padding: 10px;
-  background: white;
-}
-
-.text-shadow {
-  font-size: 45px;
-  text-shadow: -2px 2px 4px silver, 2px 2px 4px silver;
-}
-
-.letter-card {
-  box-shadow: 2px 2px 4px grey;
-  border-radius: 16px;
-  padding: 10px;
-  margin: 8px 5px;
-  background-color: white;
-  min-width: 60px;
-  cursor: grab;
-}
-
-.btn {
-  border-radius: 100px;
-  color: white;
-  font-weight: bold;
-  padding: 10px 50px;
-  font-size: 24px;
-}
-
-.color-white {
-  color: white
-}
-
-.color-blue {
-  color: #3261CF;
-}
-
-.font-bold {
-  font-weight: bold;
-}
-
-.bdr-16 {
-  border-radius: 16px;
-}
-
-.load-wrap {
-  position: absolute;
-  background: linear-gradient(to right, #f5af19, #f12711);
-  z-index: 1;
-  display: none;
-  height: 100vh;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.load-wrap p {
-  color: #3261CF;
-  font-size: 32px;
-}
-
-.ghost { 
-  opacity: 0; 
-}
-
-.drag {
-  opacity: 1 !important;
-}
 
 #hint {
   font-size: 40px;
-}
-
-.modal-content {
-  border-radius: 16px;
-}
-
-.order-letters {
-  margin-bottom: 3em;
-}
-
-.word-answer {
-  margin-top: 2em;
 }
 
 .form-group {
   margin-bottom: 0;
 }
 
-.buttons {
-  margin-top: 1em;
-}
-
-@-webkit-keyframes clignote {
-  100%{background-color: #E50A06;}
-  100%{border-color:#E50A06;}
-}
-
-.toggle-color {
-  -webkit-animation-name: clignote; //on affecte l'animation clignote à notre bouton
-  -webkit-animation-duration: 0.5s; //on définit la durée de l'animation à 1s
-  -webkit-animation-iteration-count:infinite; //on dit que l'animation se répétera à l'infini.
+.card {
+  border-radius: 16px;
 }

@@ -1,3 +1,37 @@
 // Import page-specific CSS files here.
 @import "home";
 @import "new_party";
+@import "loading_page";
+
+body {
+  background: linear-gradient(to right, #f5af19, #f12711);
+}
+
+p, h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: bold;
+}
+
+h1 {
+  color: #F12A12;
+}
+
+h2 {
+  margin-top: 2em;
+  border-radius: 16px;
+  color: #3261CF;
+  padding: 10px;
+  background: white;
+}
+
+h3 {
+  color: #3261CF;
+}
+
+h4 {
+  color: white;
+}
+
+p {
+  font-size: 20px;
+}

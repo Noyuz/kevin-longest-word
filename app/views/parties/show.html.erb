@@ -1,39 +1,36 @@
 <div class="d-flex justify-content-between color-white font-bold">
   <div>
-    <p>Nbr de games: <%= @number_of_games %></p>
-    <p>Nbr de parties: <%= @number_of_parties %>/5</p>
+    <h4>Nbr de games: <%= @number_of_games %></h4>
+    <h4>Nbr de parties: <%= @number_of_parties %>/5</h4>
   </div>
 
   <div class="text-right">
-    <p>Meilleur score: <%= @best_score %></p>
-    <p>Score actuel: <%= @game_score %></p>
+    <h4>Meilleur score: <%= @best_score %></h4>
+    <h4>Score actuel: <%= @game_score %></h4>
   </div>
 </div>
 
 <%= render 'shared/grid', letters: @party.ten_letters_list %>
 
 <% if @party.score.zero? %>
-  <h3 class="word-answer">Désolé, tu ne gagnes pas de point pour cette partie !</h3>
+  <h4 class="word-answer">Désolé, tu ne gagnes pas de point pour cette partie !</h4>
   <h2 class="word-answer">Une solution possible était: <%= @party.word %></h2>
 <% else %>
   <h2 class="word-answer"><%= @party.word %></h2>
 <% end %>
 
-
-<div class="card p-3 mt-3 bdr-16">
-  <h3 class="font-bold color-blue">Les 10 meilleurs réponses</h3>
+<div class="card p-3 mt-3">
+  <h3 class="font-bold">Les 10 meilleurs réponses</h3>
   <div class="d-flex justify-content-around">
     <div>
-      <% if @ten_solutions %>
-        <% @ten_solutions[0..4].each do |solution| %>
-          <div class="font-bold p-1"><%= solution %></div>
-        <% end %>
+      <% @ten_solutions[0..4].each do |solution| %>
+        <p class="font-bold p-1"><%= solution %></p>
       <% end %>
     </div>
     <div>
-      <% if @ten_solutions && @ten_solutions.size > 5 %>
+      <% if @ten_solutions.size > 5 %>
         <% @ten_solutions[5..9].each do |solution| %>
-          <div class="font-bold p-1"><%= solution %></div>
+          <p class="font-bold p-1"><%= solution %></p>
         <% end %>
       <% end %>
     </div>
@@ -51,27 +48,24 @@
   <% end %>
   
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title" id="exampleModalLabel">Partie terminée !</h1>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header" id="modal-header-scores">
+        <h1 class="modal-title" id="modal-title-scores">Game terminée !</h1>
       </div>
-      <div class="modal-body">
-       <h2>Voici un résumé de cette game :</h2>  
-        <% @parties.each do |party| %>
-          <h3><%= party.ten_letters_list %> - <%= party.score %> points</h3>
-          <% if party.score.zero? %>
-            <p>Aucun mot trouvé</p>
-          <% else %>
-            <p>Ta réponse: <%= party.word %></p>
-          <% end %>
+        <% @parties.each_with_index do |party, index| %>
+          <div class="modal-body">
+            <h3><%= index + 1 %>. <strong><%= party.ten_letters_list %></strong> - <%= party.score %> points</h3>
+            <% if party.score.zero? %>
+              <p>Aucun mot trouvé</p>
+            <% else %>
+              <p>Ta réponse: <%= party.word %></p>
+            <% end %>
+          </div>
         <% end %>
-      </div>
-      <div class="modal-footer">
+      <div class="modal-footer" id="modal-footer-scores">
+        <h1>TOTAL : <%= @game_score %> points</h1>
         <%= link_to "Rejouer ?", root_path, class: "btn btn-primary" %>
       </div>
     </div>

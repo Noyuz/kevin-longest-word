@@ -3,7 +3,7 @@
 <p class="order-letters">Mets les lettres dans l'ordre que tu veux !</p>
 
 <%= simple_form_for(@party, remote: true) do |f| %>
-  <%= f.input :word, label: false, class: "word-input", error: "Entrez un mot dans champ prévu à cet effet" %>
+  <%= f.input :word, label: false, class: "word-input", error: "Entrez un mot dans le champ prévu à cet effet" %>
   <%= f.input :ten_letters_list, as: :hidden, input_html: { value: @grid } %>
   <div class="d-flex justify-content-center buttons">
     <%= f.submit "Jouer", class: "btn btn-primary", id: "play-btn" %>
@@ -11,7 +11,10 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-info <%= "toggle-color" if @hint.nil? %>" data-toggle="modal" data-target="#hint-modal">Aide</button>
+    <!-- /Button trigger modal -->
 
+
+    <!-- Button solution -->
     <% if @hint %>
       <%= simple_form_for(@party, remote: true) do |f| %>
         <%= f.input :word, as: :hidden, input_html: { value: @hint }, error: false %>
@@ -21,7 +24,7 @@
       <% end %>
     <% end %>
   </div>
-  
+  <!-- /Button solution -->
 
 <!-- Modal -->
 <div class="modal fade" id="hint-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -41,3 +44,4 @@
     </div>
   </div>
 </div>
+<!-- /Modal -->
