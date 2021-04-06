@@ -14,7 +14,7 @@
 
 <% if @party.score.zero? %>
   <h4 class="word-answer">Désolé, tu ne gagnes pas de point pour cette partie !</h4>
-  <h2 class="word-answer">Une solution possible était: <%= @party.word %></h2>
+  <h2 class="word-answer">Une solution possible était : <%= @party.word %></h2>
 <% else %>
   <h2 class="word-answer"><%= @party.word %></h2>
 <% end %>
@@ -46,7 +46,7 @@
     <%= link_to "Rejouer", root_path, class: "btn btn-primary" %>
   </div>
   <% end %>
-  
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog" role="document">

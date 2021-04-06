@@ -20,3 +20,10 @@
   -webkit-animation-duration: 0.5s; //on définit la durée de l'animation à 1s
   -webkit-animation-iteration-count:infinite; //on dit que l'animation se répétera à l'infini.
 }
+
+@media screen and (max-width: 768px) {
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}
